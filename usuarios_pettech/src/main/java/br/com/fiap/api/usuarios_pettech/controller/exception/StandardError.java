@@ -3,14 +3,14 @@ package br.com.fiap.api.usuarios_pettech.controller.exception;
 import java.time.Instant;
 
 public class StandardError {
-private Instant timestamp;
-	
+	private Instant timestamp;
+
 	private Integer status;
-	
+
 	private String error;
-	
+
 	private String message;
-	
+
 	private String path;
 
 	public StandardError() {
@@ -57,5 +57,5 @@ private Instant timestamp;
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
+
 }

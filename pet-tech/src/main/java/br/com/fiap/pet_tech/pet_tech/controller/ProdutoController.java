@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.pet_tech.pet_tech.dto.ProdutoDTO;
 import br.com.fiap.pet_tech.pet_tech.entity.Produto;
 import br.com.fiap.pet_tech.pet_tech.service.ProdutoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/produtos")
@@ -40,14 +41,14 @@ public class ProdutoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO produtoDTO) {
+	public ResponseEntity<ProdutoDTO> save(@Valid @RequestBody ProdutoDTO produtoDTO) {
 		produtoDTO = service.save(produtoDTO);
 		return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(produtoDTO);
 		/*passar um status code personalizado, poderia ter sido também o método status*/
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ProdutoDTO> update(@PathVariable UUID id, @RequestBody ProdutoDTO produtoDTO){
+	public ResponseEntity<ProdutoDTO> update(@PathVariable UUID id, @Valid @RequestBody ProdutoDTO produtoDTO){
 		produtoDTO = service.update(id, produtoDTO);
 		return ResponseEntity.ok(produtoDTO);
 	}

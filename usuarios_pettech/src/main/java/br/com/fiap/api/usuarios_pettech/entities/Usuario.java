@@ -1,4 +1,4 @@
-	package br.com.fiap.api.usuarios_pettech.entities;
+package br.com.fiap.api.usuarios_pettech.entities;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_usuario")
+@Table(name = "tb_usuario")
 public class Usuario {
 
 	@Id
@@ -20,12 +20,12 @@ public class Usuario {
 	private String email;
 	private String cpf;
 	private LocalDate dataNascimento;
-	
+
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Usuario(Long id, String nome, String email, String cpf, LocalDate dataNascimento) {
 		super();
 		this.id = id;
@@ -74,7 +74,7 @@ public class Usuario {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -97,6 +97,5 @@ public class Usuario {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", dataNascimento="
 				+ dataNascimento + "]";
 	}
-	
-	
+
 }
