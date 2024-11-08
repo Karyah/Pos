@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.usuarios_pettech.dto.UsuarioDTO;
 import br.com.fiap.usuarios_pettech.service.UsuarioService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -38,7 +39,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping
-	public ResponseEntity<UsuarioDTO> save(@RequestBody UsuarioDTO usuarioDTO) {
+	public ResponseEntity<UsuarioDTO> save(@RequestBody @Valid UsuarioDTO usuarioDTO) {
 		UsuarioDTO savedUsuario = service.save(usuarioDTO);
 		return new ResponseEntity<>(savedUsuario, HttpStatus.CREATED);
 	}
