@@ -5,5 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.fiap.springblog.model.Artigo;
 
 public interface ArtigoRepository extends MongoRepository<Artigo, String>{
-
+	
+	public void deleteById(String codigo);
 }

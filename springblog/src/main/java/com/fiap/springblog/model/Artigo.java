@@ -23,4 +23,5 @@ public class Artigo {
 	private String texto;
 	private String url;
 	private Integer status;
+	
 }
