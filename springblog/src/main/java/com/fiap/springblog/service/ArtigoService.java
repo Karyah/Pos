@@ -24,4 +24,10 @@ public interface ArtigoService {
 	public void deleteById(String codigo);
 	
 	public void deleteArtigoById(String codigo);
+	
+	public List<Artigo> findByStatusAndDataGreaterThan(Integer status, LocalDateTime data);
+	
+	public List<Artigo> obterArtigoPorDatHora(LocalDateTime dataDe, LocalDateTime dataAte);
+	
+	public List<Artigo> encontrarArtigosComplexos(Integer status, LocalDateTime data, String titulo);
 }

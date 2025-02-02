@@ -67,8 +67,31 @@ public class ArtigoController {
 		
 	}
 	
-	@DeleteMapping("/delete")
+	@DeleteMapping("/delete	")
 	public void deleteArtigoById(@RequestParam("codigo") String codigo) {
 		artigoService.deleteArtigoById(codigo);
+	}
+	
+	@GetMapping("/status-maiordata")
+	public List<Artigo> findByStatusAndDataGreaterThan
+			(@RequestParam("status") Integer status,
+			@RequestParam("data") LocalDateTime data){
+		return artigoService.findByStatusAndDataGreaterThan(status, data);
+	}
+	
+	@GetMapping("/periodo")
+	public List<Artigo> obterArtigoPorDatHora
+			(@RequestParam("dataDe") LocalDateTime dataDe,
+			 @RequestParam("dataAte") LocalDateTime dataAte){
+		return artigoService.obterArtigoPorDatHora(dataDe, dataAte);
+	}
+	
+	@GetMapping("/artigos-complexos")
+	public List<Artigo> encontrarArtigosComplexos
+			(@RequestParam("status") Integer status,
+			@RequestParam("data") LocalDateTime data,
+			@RequestParam("titulo") String titulo){
+		return artigoService.encontrarArtigosComplexos(status, data, titulo);
+		
 	}
 }
