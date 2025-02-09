@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,5 +96,21 @@ public class ArtigoController {
 			@RequestParam("titulo") String titulo){
 		return artigoService.encontrarArtigosComplexos(status, data, titulo);
 		
+	}
+	
+	@GetMapping("/pagina-artigos")
+	public ResponseEntity<Page<Artigo>> listaArtigos(Pageable pageable){
+		Page<Artigo> artigos =this.artigoService.findAll(pageable);
+		return ResponseEntity.ok(artigos);
+	} 
+	
+	@GetMapping("/status-ordenado")
+	public List<Artigo> findByStatusOrderByTituloAsc(@RequestParam("status") Integer status){
+		return this.artigoService.findByStatusOrderByTituloAsc(status);
+	}
+	
+	@GetMapping("/status-query-ordenacao")
+	public List<Artigo> obterArtigoPorStatusComOrdenacao(@RequestParam("status") Integer status) {
+		return this.artigoService.obterArtigoPorStatusComOrdenacao(status);
 	}
 }

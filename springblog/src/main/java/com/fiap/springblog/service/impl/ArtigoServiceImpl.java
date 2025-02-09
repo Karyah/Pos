@@ -3,6 +3,10 @@ package com.fiap.springblog.service.impl;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -121,5 +125,23 @@ public class ArtigoServiceImpl implements ArtigoService{
 		Query query = new Query(criteria);
 		
 		return mongoTemplate.find(query, Artigo.class);
+	}
+
+	@Override
+	public Page<Artigo> findAll(Pageable pageable) {
+		Sort sort =  Sort.by("titulo").ascending();
+		Pageable paginacao = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+		return artigoRepository.findAll(paginacao);
+		
+	}
+
+	@Override
+	public List<Artigo> findByStatusOrderByTituloAsc(Integer status) {
+		return artigoRepository.findByStatusOrderByTituloAsc(status);
+	}
+
+	@Override
+	public List<Artigo> obterArtigoPorStatusComOrdenacao(Integer status) {
+		return artigoRepository.obterArtigoPorStatusComOrdenacao(status);
 	}
 }
