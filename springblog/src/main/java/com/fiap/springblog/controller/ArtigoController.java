@@ -113,4 +113,9 @@ public class ArtigoController {
 	public List<Artigo> obterArtigoPorStatusComOrdenacao(@RequestParam("status") Integer status) {
 		return this.artigoService.obterArtigoPorStatusComOrdenacao(status);
 	}
+	
+	@GetMapping("/buscaTexto")
+	public List<Artigo> findByTexto(@RequestParam("searchTerm") String searchTerm){
+		return this.artigoService.findByTexto(searchTerm);
+	}
 }
