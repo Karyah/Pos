@@ -1,0 +1,27 @@
+package br.com.organicxpto.estoque;
+
+import java.util.function.Consumer;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+// Spring Functions
+// Com o Cloud, podemos implementar Consumer, Producer ou Function. Nesse caso criaremos uuum Consumer
+@Component
+public class ProdutoConsumer {
+
+	private final ProdutoService produtoService;
+	
+	public ProdutoConsumer(ProdutoService produtoService) {
+		this.produtoService = produtoService;
+	}
+	
+	// Objeto que vamos consumir 
+	// Dentro do diamante eu indico qual o opbjeto que vou maanipulaar neste metodo
+	// Precisamos colocar o bean p Spring entender
+	@Bean(name = "remover-estoque")
+	Consumer<ProdutoRequest> consumer(){
+		return produtoRequest -> 
+			this.produtoService.removerEstoque(produtoRequest.getIdProduto(), produtoRequest.getQuantidade());
+	}
+}
